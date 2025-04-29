@@ -23,10 +23,13 @@ const CertificateOfRegistration = () => {
   const [uploadedSignature, setUploadedSignature] = useState(null);
   const [currentDate, setCurrentDate] = useState("");
 
-  // Now filter after initializing the states
-  const employeeNum = getEmployeeNumFromToken();
 
   const filteredData = data;
+
+  const totalLec = filteredData.reduce((acc, item) => acc + (item.lec || 0), 0);
+  const totalLab = filteredData.reduce((acc, item) => acc + (item.lab || 0), 0); 
+  const totalCredit = filteredData.reduce((acc, item) => acc + (item.credit || 0), 0);
+  const totalTuition = filteredData.reduce((acc, item) => acc + (item.tuition || 0), 0);
 
 
   useEffect(() => {
@@ -1172,7 +1175,7 @@ const CertificateOfRegistration = () => {
                   </b>
                 </td>
                 <td
-                  colSpan={8}
+                  colSpan={6}
                   style={{
 
                     fontSize: "55%",
@@ -1197,7 +1200,7 @@ const CertificateOfRegistration = () => {
                     textAlign: "center",
                   }}
                 >
-
+                    {totalLec}
                 </td>
                 <td
                   colSpan={1}
@@ -1210,18 +1213,8 @@ const CertificateOfRegistration = () => {
                     textAlign: "center",
                   }}
                 >
-                </td>
-                <td
-                  colSpan={1}
-                  style={{
-                    height: "0.1in",
-                    fontSize: "55%",
-
-                    color: "black",
-
-                    textAlign: "center",
-                  }}
-                >
+                  
+                  {totalLab}
                 </td>
                 <td
                   colSpan={1}
@@ -1234,6 +1227,20 @@ const CertificateOfRegistration = () => {
                     textAlign: "center",
                   }}
                 >
+                  {totalCredit}
+                </td>
+                <td
+                  colSpan={1}
+                  style={{
+                    height: "0.1in",
+                    fontSize: "55%",
+
+                    color: "black",
+
+                    textAlign: "center",
+                  }}
+                >
+                  {totalTuition}
                 </td>
                 <td
                   colSpan={2}
@@ -1246,6 +1253,7 @@ const CertificateOfRegistration = () => {
                     textAlign: "center",
                   }}
                 >
+                  
                 </td>
                 <td
                   colSpan={2}
